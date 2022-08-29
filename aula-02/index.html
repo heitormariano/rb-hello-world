@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Primeiros Passos na programação</title>
+    <script>
+      let despesasJaneiro = {};
+      let despesasFevereiro = {};
+      let despesasMarco = {};
+
+      let saldoInicial = 0;
+      let salarioJan = 0;
+      let salarioFev = 0;
+      let salarioMar = 0;
+
+      function init() {
+        salarioJan = 3000;
+        despesasJaneiro = {
+          aluguel: 1000,
+          contaDeAgua: 200,
+          contaDeLuz: 100,
+          internet: 100,
+          transporte: 300,
+          lazer: 300,
+          alimentacao: 500,
+        };
+
+        salarioFev = 3000;
+        despesasFevereiro = {
+          aluguel: 1200,
+          contaDeAgua: 250,
+          contaDeLuz: 100,
+          internet: 100,
+          transporte: 500,
+          lazer: 0,
+          alimentacao: 1000,
+        };
+
+        salarioMar = 4000;
+        despesasMarco = {
+          aluguel: 1200,
+          contaDeAgua: 200,
+          contaDeLuz: 100,
+          internet: 200,
+          transporte: 500,
+          lazer: 800,
+          alimentacao: 1000,
+        };
+      }
+
+      function arredondar(valor) {
+        return Math.round(valor * 100) / 100;
+      }
+
+      function isSaldoNegativo(saldo) {
+        return saldo < 0;
+      }
+
+      function calcularRendimentos(saldo, taxaRedimento) {
+        let rendimentos = arredondar(saldo * taxaRedimento);
+        return rendimentos;
+      }
+
+      function calcularJuros(saldo, taxaJuros) {
+        let juros = arredondar(saldo * taxaJuros);
+        return juros;
+      }
+
+      function calcularDespesas(despesas) {
+        let somaDespesas = 0;
+        for (const despesa of Object.values(despesas)) {
+          somaDespesas += despesa;
+        }
+        return somaDespesas;
+      }
+      function calcularSaldo(mes, saldoInicial, salario, despesas) {
+        console.log(mes);
+        let valorDespesas = calcularDespesas(despesas);
+        let saldo = saldoInicial + salario - valorDespesas;
+
+        let estaNegativo = isSaldoNegativo(saldo);
+        if (estaNegativo) {
+          let juros = calcularJuros(saldo, 0.1);
+          saldo = saldo + juros;
+        } else {
+          let rendimentos = calcularRendimentos(saldo, 0.05);
+          saldo = saldo + rendimentos;
+        }
+        return saldo;
+      }
+
+      init();
+      let saldoJaneiro = calcularSaldo('Janeiro', saldoInicial, salarioJan, despesasJaneiro);
+      console.log(saldoJaneiro);
+
+      let saldoFevereiro = calcularSaldo('Fevereiro', saldoJaneiro, salarioFev, despesasFevereiro);
+      console.log(saldoFevereiro);
+
+      let saldoMarco = calcularSaldo('Marco', saldoFevereiro, salarioMar, despesasMarco);
+      console.log(saldoMarco);
+    </script>
+  </head>
+  <body>
+    <h1>Hello World - Primeiros passos na programação</h1>
+  </body>
+</html>
