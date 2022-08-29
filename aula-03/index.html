@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Primeiros Passos na programação</title>
+    <script>
+      let lancamentosJaneiro = [];
+      let lancamentosFevereiro = [];
+      let lancamentosMarco = [];
+
+      let saldoInicial = 0;
+
+      function init() {
+        lancamentosJaneiro = [
+          { categoria: 'salario', tipo: 'receita', valor: 3000 },
+          { categoria: 'aluguel', tipo: 'despesa', valor: 1000 },
+          { categoria: 'conta de agua', tipo: 'despesa', valor: 200 },
+          { categoria: 'conta de luz', tipo: 'despesa', valor: 100 },
+          { categoria: 'Internet', tipo: 'despesa', valor: 100 },
+          { categoria: 'Transporte', tipo: 'despesa', valor: 300 },
+          { categoria: 'Lazer', tipo: 'despesa', valor: 300 },
+          { categoria: 'Alimentacao', tipo: 'despesa', valor: 500 },
+          { categoria: 'Condominio', tipo: 'despesa', valor: 450 },
+          { categoria: 'Famarcia', tipo: 'despesa', valor: 120 },
+        ];
+
+        lancamentosFevereiro = [
+          { categoria: 'salario', tipo: 'receita', valor: 3000 },
+          { categoria: 'aluguel', tipo: 'despesa', valor: 1200 },
+          { categoria: 'conta de agua', tipo: 'despesa', valor: 250 },
+          { categoria: 'conta de luz', tipo: 'despesa', valor: 100 },
+          { categoria: 'Internet', tipo: 'despesa', valor: 100 },
+          { categoria: 'Transporte', tipo: 'despesa', valor: 500 },
+          { categoria: 'Lazer', tipo: 'despesa', valor: 100 },
+          { categoria: 'Alimentacao', tipo: 'despesa', valor: 620 },
+          { categoria: 'Condominio', tipo: 'despesa', valor: 460 },
+          { categoria: 'Famarcia', tipo: 'despesa', valor: 120 },
+        ];
+
+        lancamentosMarco = [
+          { categoria: 'salario', tipo: 'receita', valor: 4000 },
+          { categoria: 'aluguel', tipo: 'despesa', valor: 1200 },
+          { categoria: 'conta de agua', tipo: 'despesa', valor: 200 },
+          { categoria: 'conta de luz', tipo: 'despesa', valor: 100 },
+          { categoria: 'Internet', tipo: 'despesa', valor: 200 },
+          { categoria: 'Transporte', tipo: 'despesa', valor: 500 },
+          { categoria: 'Lazer', tipo: 'despesa', valor: 300 },
+          { categoria: 'Alimentacao', tipo: 'despesa', valor: 1000 },
+          { categoria: 'Condominio', tipo: 'despesa', valor: 600 },
+          { categoria: 'Famarcia', tipo: 'despesa', valor: 250 },
+        ];
+      }
+
+      function arredondar(valor) {
+        return Math.round(valor * 100) / 100;
+      }
+
+      function isSaldoNegativo(saldo) {
+        return saldo < 0;
+      }
+
+      function calcularRendimentos(saldo, taxaRedimento) {
+        let rendimentos = arredondar(saldo * taxaRedimento);
+        return rendimentos;
+      }
+
+      function calcularJuros(saldo, taxaJuros) {
+        let juros = arredondar(saldo * taxaJuros);
+        return juros;
+      }
+
+      function calcularSaldo(mes, saldoInicial, lancamentos) {
+        console.log(mes);
+        let saldo = saldoInicial;
+        for (lancamento of lancamentos) {
+          if (lancamento.tipo === 'receita') {
+            saldo += lancamento.valor;
+          } else if (lancamento.tipo === 'despesa') {
+            saldo -= lancamento.valor;
+          }
+        }
+
+        let estaNegativo = isSaldoNegativo(saldo);
+        if (estaNegativo) {
+          let juros = calcularJuros(saldo, 0.1);
+          saldo += juros;
+        } else {
+          let rendimentos = calcularRendimentos(saldo, 0.05);
+          saldo += rendimentos;
+        }
+        return saldo;
+      }
+
+      init();
+      let saldoJaneiro = calcularSaldo('Janeiro', saldoInicial, lancamentosJaneiro);
+      console.log(saldoJaneiro);
+
+      let saldoFevereiro = calcularSaldo('Fevereiro', saldoJaneiro, lancamentosFevereiro);
+      console.log(saldoFevereiro);
+
+      let saldoMarco = calcularSaldo('Marco', saldoFevereiro, lancamentosMarco);
+      console.log(saldoMarco);
+    </script>
+  </head>
+  <body>
+    <h1>Hello World - Primeiros passos na programação</h1>
+  </body>
+</html>
