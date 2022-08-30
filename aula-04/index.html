@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Primeiros Passos na programação</title>
+    <script>
+      class Lancamento {
+        constructor(categoria, tipo, valor) {
+          if (categoria === '') {
+            throw new Error('Lancamento Invalido: A categoria e informacao obrigatoria');
+          }
+
+          if (tipo !== 'receita' && tipo !== 'despesa') {
+            throw new Error('Lancamento Invalido: O tipo deve ser receita ou despesa');
+          }
+
+          if (valor <= 0) {
+            throw new Error('Lancamento Invalido: O valor deve ser maior do que zero');
+          }
+          this.categoria = categoria;
+          this.tipo = tipo;
+          this.valor = valor;
+        }
+      }
+
+      let lancamentosJaneiro = [];
+      let lancamentosFevereiro = [];
+      let lancamentosMarco = [];
+
+      let saldoInicial = 0;
+
+      function definirLancamentos() {
+        // aumentando o salario
+        lancamentosJaneiro.push(new Lancamento('salario', 'receita', 3500));
+        lancamentosJaneiro.push(new Lancamento('aluguel', 'despesa', 1000));
+        lancamentosJaneiro.push(new Lancamento('conta de agua', 'despesa', 200));
+        lancamentosJaneiro.push(new Lancamento('conta de luz', 'despesa', 100));
+        lancamentosJaneiro.push(new Lancamento('Internet', 'despesa', 100));
+        lancamentosJaneiro.push(new Lancamento('Transporte', 'despesa', 300));
+        lancamentosJaneiro.push(new Lancamento('Lazer', 'despesa', 300));
+        lancamentosJaneiro.push(new Lancamento('Alimentacao', 'despesa', 500));
+        lancamentosJaneiro.push(new Lancamento('Condominio', 'despesa', 450));
+        lancamentosJaneiro.push(new Lancamento('Famarcia', 'despesa', 120));
+
+        lancamentosFevereiro.push(new Lancamento('salario', 'receita', 3000));
+        lancamentosFevereiro.push(new Lancamento('aluguel', 'despesa', 1200));
+        lancamentosFevereiro.push(new Lancamento('conta de agua', 'despesa', 250));
+        lancamentosFevereiro.push(new Lancamento('conta de luz', 'despesa', 100));
+        lancamentosFevereiro.push(new Lancamento('Internet', 'despesa', 100));
+        lancamentosFevereiro.push(new Lancamento('Transporte', 'despesa', 500));
+        lancamentosFevereiro.push(new Lancamento('Lazer', 'despesa', 100));
+        lancamentosFevereiro.push(new Lancamento('Alimentacao', 'despesa', 620));
+        lancamentosFevereiro.push(new Lancamento('Condominio', 'despesa', 460));
+        lancamentosFevereiro.push(new Lancamento('Famarcia', 'despesa', 120));
+
+        lancamentosMarco.push(new Lancamento('salario', 'receita', 4000));
+        lancamentosMarco.push(new Lancamento('aluguel', 'despesa', 1200));
+        lancamentosMarco.push(new Lancamento('conta de agua', 'despesa', 200));
+        lancamentosMarco.push(new Lancamento('conta de luz', 'despesa', 100));
+        lancamentosMarco.push(new Lancamento('Internet', 'despesa', 200));
+        lancamentosMarco.push(new Lancamento('Transporte', 'despesa', 500));
+        lancamentosMarco.push(new Lancamento('Lazer', 'despesa', 300));
+        lancamentosMarco.push(new Lancamento('Alimentacao', 'despesa', 1000));
+        lancamentosMarco.push(new Lancamento('Condominio', 'despesa', 600));
+        lancamentosMarco.push(new Lancamento('Famarcia', 'despesa', 250));
+      }
+
+      function arredondar(valor) {
+        return Math.round(valor * 100) / 100;
+      }
+
+      function isSaldoNegativo(saldo) {
+        return saldo < 0;
+      }
+
+      function calcularRendimentos(saldo, taxaRedimento) {
+        let rendimentos = arredondar(saldo * taxaRedimento);
+        return rendimentos;
+      }
+
+      function calcularJuros(saldo, taxaJuros) {
+        let juros = arredondar(saldo * taxaJuros);
+        return juros;
+      }
+
+      function distribuirPercentualDespesas(lancamentos, totalDespesas) {
+        let distribuicaoPercentualDespesas = [];
+        for (lancamento of lancamentos) {
+          if (lancamento.tipo === 'despesa') {
+            let percentual = arredondar((lancamento.valor / totalDespesas) * 100);
+            distribuicaoPercentualDespesas.push({ categoria: lancamento.categoria, percentual });
+          }
+        }
+
+        return distribuicaoPercentualDespesas;
+      }
+
+      function calcularSaldo(mes, saldoInicial, lancamentos) {
+        console.log(mes);
+        //let saldo = saldoInicial;
+        let totalizadorDoMes = {
+          saldo: 0,
+          saldoInicial,
+          juros: 0,
+          rendimentos: 0,
+          receitas: 0,
+          despesas: 0,
+          distribuicaoPercentualDespesas: [],
+        };
+        totalizadorDoMes.saldo = saldoInicial;
+        for (lancamento of lancamentos) {
+          if (lancamento.tipo === 'receita') {
+            totalizadorDoMes.saldo += lancamento.valor;
+            totalizadorDoMes.receitas += lancamento.valor;
+          } else if (lancamento.tipo === 'despesa') {
+            totalizadorDoMes.saldo -= lancamento.valor;
+            totalizadorDoMes.despesas += lancamento.valor;
+          }
+        }
+
+        totalizadorDoMes.distribuicaoPercentualDespesas = distribuirPercentualDespesas(
+          lancamentos,
+          totalizadorDoMes.despesas
+        );
+        let estaNegativo = isSaldoNegativo(totalizadorDoMes.saldo);
+        if (estaNegativo) {
+          totalizadorDoMes.juros = calcularJuros(totalizadorDoMes.saldo, 0.1);
+          totalizadorDoMes.saldo = arredondar(totalizadorDoMes.saldo + totalizadorDoMes.juros);
+        } else {
+          totalizadorDoMes.rendimentos = calcularRendimentos(totalizadorDoMes.saldo, 0.05);
+          totalizadorDoMes.saldo = arredondar(
+            totalizadorDoMes.saldo - totalizadorDoMes.rendimentos
+          );
+        }
+        return totalizadorDoMes;
+      }
+
+      definirLancamentos();
+      let totalizadorJaneiro = calcularSaldo('Janeiro', saldoInicial, lancamentosJaneiro);
+      console.log(totalizadorJaneiro);
+
+      let totalizadorFevereiro = calcularSaldo(
+        'Fevereiro',
+        totalizadorJaneiro.saldo,
+        lancamentosFevereiro
+      );
+      console.log(totalizadorFevereiro);
+
+      let totalizadorMarco = calcularSaldo('Marco', totalizadorFevereiro.saldo, lancamentosMarco);
+      console.log(totalizadorMarco);
+    </script>
+  </head>
+  <body>
+    <h1>Hello World - Primeiros passos na programação</h1>
+  </body>
+</html>
