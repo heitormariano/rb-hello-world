@@ -128,7 +128,7 @@
         } else {
           totalizadorDoMes.rendimentos = calcularRendimentos(totalizadorDoMes.saldo, 0.05);
           totalizadorDoMes.saldo = arredondar(
-            totalizadorDoMes.saldo - totalizadorDoMes.rendimentos
+            totalizadorDoMes.saldo + totalizadorDoMes.rendimentos
           );
         }
         return totalizadorDoMes;

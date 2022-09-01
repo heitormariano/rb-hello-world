@@ -73,7 +73,7 @@ class Mes {
   apurarRendimentos() {
     if (this.totalizador.saldo > 0) {
       this.totalizador.rendimentos = this.calcularRendimentos(this.totalizador.saldo);
-      this.totalizador.saldo = arredondar(this.totalizador.saldo - this.totalizador.rendimentos);
+      this.totalizador.saldo = arredondar(this.totalizador.saldo + this.totalizador.rendimentos);
     }
   }
 
