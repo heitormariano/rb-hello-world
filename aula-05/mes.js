@@ -51,7 +51,7 @@ class Mes {
     const distribuicaoDespesas = [];
     for (const lancamento of this.lancamentos) {
       if (lancamento.tipo === 'despesa') {
-        let percentual = arredondar((lancamento.valor / this.totalizador.despesas) * 100);
+        const percentual = arredondar((lancamento.valor / this.totalizador.despesas) * 100);
         distribuicaoDespesas.push({ categoria: lancamento.categoria, percentual });
       }
     }
