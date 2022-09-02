@@ -1,3 +1,3 @@
-console.log(janeiro.totalizador.saldo === 451.5);
-console.log(fevereiro.totalizador.saldo === 1.58);
-console.log(marco.totalizador.saldo === -383.26);
+console.log(janeiro.totalizador.saldo === 432.15);
+console.log(fevereiro.totalizador.saldo === -19.63);
+console.log(marco.totalizador.saldo === -406.59);
