@@ -72,8 +72,8 @@
         return saldo < 0;
       }
 
-      function calcularRendimentos(saldo, taxaRedimento) {
-        let rendimentos = arredondar(saldo * taxaRedimento);
+      function calcularRendimentos(saldo) {
+        let rendimentos = arredondar(saldo * 0.005);
         return rendimentos;
       }
 
@@ -126,7 +126,7 @@
           totalizadorDoMes.juros = calcularJuros(totalizadorDoMes.saldo, 0.1);
           totalizadorDoMes.saldo = arredondar(totalizadorDoMes.saldo + totalizadorDoMes.juros);
         } else {
-          totalizadorDoMes.rendimentos = calcularRendimentos(totalizadorDoMes.saldo, 0.05);
+          totalizadorDoMes.rendimentos = calcularRendimentos(totalizadorDoMes.saldo);
           totalizadorDoMes.saldo = arredondar(
             totalizadorDoMes.saldo + totalizadorDoMes.rendimentos
           );

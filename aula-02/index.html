@@ -55,8 +55,8 @@
         return saldo < 0;
       }
 
-      function calcularRendimentos(saldo, taxaRedimento) {
-        let rendimentos = arredondar(saldo * taxaRedimento);
+      function calcularRendimentos(saldo) {
+        let rendimentos = arredondar(saldo * 0.005);
         return rendimentos;
       }
 
@@ -82,7 +82,7 @@
           let juros = calcularJuros(saldo, 0.1);
           saldo = saldo + juros;
         } else {
-          let rendimentos = calcularRendimentos(saldo, 0.05);
+          let rendimentos = calcularRendimentos(saldo);
           saldo = saldo + rendimentos;
         }
         return saldo;
