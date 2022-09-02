@@ -85,7 +85,7 @@ class Mes {
   }
 
   calcularRendimentos(saldo) {
-    const rendimentos = arredondar(saldo * 0.05);
+    const rendimentos = arredondar(saldo * 0.005);
     return rendimentos;
   }
 }
