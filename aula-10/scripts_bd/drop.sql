@@ -2,4 +2,4 @@
 drop table financas_pessoais.lancamento;
 
 -- excluir banco de dados
-drop database inancas_pessoais;
+drop database financas_pessoais;
