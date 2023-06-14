@@ -3,36 +3,18 @@ janeiro.adicionarLancamento(new Lancamento('salario', 'receita', 3500));
 janeiro.adicionarLancamento(new Lancamento('aluguel', 'despesa', 1000));
 janeiro.adicionarLancamento(new Lancamento('conta de agua', 'despesa', 200));
 janeiro.adicionarLancamento(new Lancamento('conta de luz', 'despesa', 100));
-// janeiro.adicionarLancamento(new Lancamento('Internet', 'despesa', 100));
-// janeiro.adicionarLancamento(new Lancamento('Transporte', 'despesa', 300));
-// janeiro.adicionarLancamento(new Lancamento('Lazer', 'despesa', 300));
-// janeiro.adicionarLancamento(new Lancamento('Alimentacao', 'despesa', 500));
-// janeiro.adicionarLancamento(new Lancamento('Condominio', 'despesa', 450));
-// janeiro.adicionarLancamento(new Lancamento('Famarcia', 'despesa', 120));
 
 const fevereiro = new Mes('Fevereiro');
 fevereiro.adicionarLancamento(new Lancamento('salario', 'receita', 3000));
 fevereiro.adicionarLancamento(new Lancamento('aluguel', 'despesa', 1200));
 fevereiro.adicionarLancamento(new Lancamento('conta de agua', 'despesa', 250));
 fevereiro.adicionarLancamento(new Lancamento('conta de luz', 'despesa', 100));
-// fevereiro.adicionarLancamento(new Lancamento('Internet', 'despesa', 100));
-// fevereiro.adicionarLancamento(new Lancamento('Transporte', 'despesa', 500));
-// fevereiro.adicionarLancamento(new Lancamento('Lazer', 'despesa', 100));
-// fevereiro.adicionarLancamento(new Lancamento('Alimentacao', 'despesa', 620));
-// fevereiro.adicionarLancamento(new Lancamento('Condominio', 'despesa', 460));
-// fevereiro.adicionarLancamento(new Lancamento('Famarcia', 'despesa', 120));
 
 const marco = new Mes('Marco');
 marco.adicionarLancamento(new Lancamento('salario', 'receita', 4000));
 marco.adicionarLancamento(new Lancamento('aluguel', 'despesa', 1200));
 marco.adicionarLancamento(new Lancamento('conta de agua', 'despesa', 200));
 marco.adicionarLancamento(new Lancamento('conta de luz', 'despesa', 100));
-// marco.adicionarLancamento(new Lancamento('Internet', 'despesa', 200));
-// marco.adicionarLancamento(new Lancamento('Transporte', 'despesa', 500));
-// marco.adicionarLancamento(new Lancamento('Lazer', 'despesa', 300));
-// marco.adicionarLancamento(new Lancamento('Alimentacao', 'despesa', 1000));
-// marco.adicionarLancamento(new Lancamento('Condominio', 'despesa', 600));
-// marco.adicionarLancamento(new Lancamento('Famarcia', 'despesa', 250));
 
 const abril = new Mes('Abril');
 abril.adicionarLancamento(new Lancamento('salario', 'receita', 4500));
