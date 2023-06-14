@@ -39,15 +39,12 @@ function renderizar() {
 
   const painel = document.createElement('div');
   for (const mes of ano.meses) {
-    console.log(mes.nome);
     addElement(painel, 'h3', mes.nome);
-
     for (const lancamento of mes.lancamentos) {
-      const detalhesLancamento =
-        lancamento.tipo + ' ' + lancamento.categoria + ' ' + lancamento.valor;
+      const detalhesLancamento = `${lancamento.tipo} ${lancamento.categoria} ${lancamento.valor}`;
       addElement(painel, 'p', detalhesLancamento);
     }
-    addElement(painel, 'h4', mes.totalizador.saldo);
+    addElement(painel, 'h4', `Saldo: ${mes.totalizador.saldo}`);
     addElement(painel, 'hr');
   }
   app.appendChild(painel);
