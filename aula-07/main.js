@@ -146,7 +146,7 @@ btnAdicionar.addEventListener('click', fnAdicionarLancamento);
 
 const mesSelect = document.getElementById('mes');
 for (mes of ano.meses) {
-  const optionElem = document.createElement('option');
-  optionElem.text = mes.nome;
-  mesSelect.appendChild(optionElem);
+  const mesOption = document.createElement('option');
+  mesOption.text = mes.nome;
+  mesSelect.appendChild(mesOption);
 }
