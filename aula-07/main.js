@@ -136,7 +136,7 @@ function fnAdicionarLancamento() {
 
   // redefinindo inputs
   mes.value = ano.meses[0].nome;
-  tipo.value = 'despesa';
+  tipo.value = 'receita';
   categoria.value = '';
   valor.value = '';
 }
