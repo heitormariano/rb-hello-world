@@ -56,7 +56,7 @@ class Tela {
 
     // redefinindo inputs
     mes.value = this.ano.meses[0].nome;
-    tipo.value = 'despesa';
+    tipo.value = 'receita';
     categoria.value = '';
     valor.value = '';
   }
@@ -119,42 +119,33 @@ class Tela {
       app.adicionarElementoFilho(tituloMes.elemento);
 
       const tabelaLancamentos = new Tabela('tabela-lancamentos');
-      tabelaLancamentos.adicionarLinha('th', ['Categoria', 'Valor']);
-
+      const celulaTipoCabecalho = 'th';
+      const celulaTipoDado = 'td';
+      tabelaLancamentos.adicionarLinha(celulaTipoCabecalho, ['Categoria', 'Valor']);
       for (const lancamento of mes.lancamentos) {
-        tabelaLancamentos.adicionarLinha('td', [
-          lancamento.categoria,
-          this.formatarDinheiro(lancamento.getValor()),
-        ]);
+        const categoria = lancamento.categoria;
+        const valorFormatado = this.formatarDinheiro(lancamento.getValor());
+        tabelaLancamentos.adicionarLinha(celulaTipoDado, [categoria, valorFormatado]);
       }
 
-      tabelaLancamentos.adicionarLinha(
-        'td',
-        ['Juros', this.formatarDinheiro(mes.totalizador.juros)],
-        'destaque-juros'
-      );
+      // definicao das linhas de juros, rendimentos e saldo
+      const jurosFormatado = this.formatarDinheiro(mes.totalizador.juros);
+      const rendimentosFormatado = this.formatarDinheiro(mes.totalizador.rendimentos);
+      const saldoFormatado = this.formatarDinheiro(mes.totalizador.saldo);
 
+      tabelaLancamentos.adicionarLinha(celulaTipoDado, ['Juros', jurosFormatado], 'destaque-juros');
       tabelaLancamentos.adicionarLinha(
-        'td',
-        ['Rendimentos', this.formatarDinheiro(mes.totalizador.rendimentos)],
+        celulaTipoDado,
+        ['Rendimentos', rendimentosFormatado],
         'destaque-rendimentos'
       );
-
-      tabelaLancamentos.adicionarLinha(
-        'td',
-        ['Saldo', this.formatarDinheiro(mes.totalizador.saldo)],
-        'destaque-saldo'
-      );
+      tabelaLancamentos.adicionarLinha(celulaTipoDado, ['Saldo', saldoFormatado], 'destaque-saldo');
 
       // adicionando tabela preenchida a div app
       app.adicionarElementoFilho(tabelaLancamentos.elemento);
     }
-    // destructuring assignment
+    // destructuring assignment (estudar se necessario)
     const [body] = document.getElementsByTagName('body');
     body.appendChild(app.elemento);
-
-    // Obtendo element via indice (metodo getElementsByTagName retorna um array)
-    // const body = document.getElementsByTagName('body')[0];
-    // body.appendChild(app.elemento);
   }
 }
