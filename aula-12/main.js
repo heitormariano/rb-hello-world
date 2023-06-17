@@ -6,5 +6,5 @@ const LancamentoDao = require('./server/lancamentoDao');
 const objConnection = new Connection();
 const httpServer = new HttpServer();
 const lancamentoDao = new LancamentoDao(objConnection);
-const lancamentoController = new LancamentoController(httpServer, lancamentoDao);
+new LancamentoController(httpServer, lancamentoDao);
 httpServer.listen(3000);
