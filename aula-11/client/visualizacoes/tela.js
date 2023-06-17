@@ -54,7 +54,7 @@ class Tela {
       body: JSON.stringify(lancamentoSalvar),
     });
 
-    // para recuperar os lancamentos do banco (anteriores e o atualmente cadastrado), reexecutar operacoes e
+    // para recuperar os lancamentos do banco (os dados anteriormente cadastrados e os atuais/recentes), reexecutar operacoes e
     // renderizar pagina
     this.init();
   }

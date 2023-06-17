@@ -33,16 +33,15 @@ class Tela {
     const tipo = this.tipoSelect.obterValor();
     const valor = this.valorInputNumber.obterValor();
 
+    // tambem funciona definir os valores do objeto desta forma
+    // const lancamentoSalvar = { mes, categoria, tipo, valor,};
     const lancamentoSalvar = {
       mes: mes,
       categoria: categoria,
       tipo: tipo,
       valor: valor,
     };
-
-    // tambem funciona definir os valores do objeto desta forma
-    // const lancamentoSalvar = { mes, categoria, tipo, valor,};
-
+    
     this.lancamentoService.saveLancamentos(lancamentoSalvar);
     this.init();
   }

@@ -153,9 +153,5 @@ class Tela {
     // destructuring assignment
     const [body] = document.getElementsByTagName('body');
     body.appendChild(app.elemento);
-
-    // Obtendo element via indice (metodo getElementsByTagName retorna um array)
-    // const body = document.getElementsByTagName('body')[0];
-    // body.appendChild(app.elemento);
   }
 }
