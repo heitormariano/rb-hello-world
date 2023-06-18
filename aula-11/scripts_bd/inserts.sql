@@ -15,6 +15,6 @@ insert into financas_pessoais.lancamento (mes, categoria, tipo, valor) values ('
 insert into financas_pessoais.lancamento (mes, categoria, tipo, valor) values ('marco', 'Conta de Água', 'despesa', 300);
 
 insert into financas_pessoais.lancamento (mes, categoria, tipo, valor) values ('abril', 'Salário', 'receita', 4200);
-insert into financas_pessoais.lancamento (mes, categoria, tipo, valor) values ('abril', 'Aluguel', 'receita', 1200);
-insert into financas_pessoais.lancamento (mes, categoria, tipo, valor) values ('abril', 'Conta de Luz', 'receita', 260);
-insert into financas_pessoais.lancamento (mes, categoria, tipo, valor) values ('abril', 'Conta de Água', 'receita', 250);
+insert into financas_pessoais.lancamento (mes, categoria, tipo, valor) values ('abril', 'Aluguel', 'despesa', 1200);
+insert into financas_pessoais.lancamento (mes, categoria, tipo, valor) values ('abril', 'Conta de Luz', 'despesa', 260);
+insert into financas_pessoais.lancamento (mes, categoria, tipo, valor) values ('abril', 'Conta de Água', 'despesa', 250);
